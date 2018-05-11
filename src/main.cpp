@@ -35,7 +35,7 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0xe7e59fbb31c56d70a65700857a9744abdaa35a0b459efb254eaa42c8faa3f323");
+uint256 hashGenesisBlock("0x9a6646930fc9f46d75ef4a2881d0c2aba2f4b885325f2d016494c8b966e84021");
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20); // Funcoin: starting difficulty is 1 / 2^12
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -2746,7 +2746,7 @@ bool LoadBlockIndex()
         pchMessageStart[1] = 0xc2;
         pchMessageStart[2] = 0xb6;
         pchMessageStart[3] = 0xd2;
-        hashGenesisBlock = uint256("0xe38de54581f17c6fab4b0f147e5318c34de2eb090473f36d1d7f424df1e12e94");
+        hashGenesisBlock = uint256("0x5e1b6f90dcf1ebfabf0056fc373f0171aa08740c32683a290e1b0471a9dbcd01");
     }
 
     //
@@ -2779,26 +2779,26 @@ bool InitBlockIndex() {
         //   vMerkleTree: 97ddfbbae6
 
         // Genesis block
-        const char* pszTimestamp = "Doug Jones defeats Roy Moore in Alabama senate election";
+        const char* pszTimestamp = "Time flies like an arrow. Fruit flies like a banana.";
         CTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-        txNew.vout[0].nValue = 20 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04c51ea81fcb28278f0346c9361703a67401d2819ed3cbcc9f971f941976bdbe48968ef979f09f1e5aafaf33aab9071fea7b99cbcdafb28a7b477f881d899b13af") << OP_CHECKSIG;
+        txNew.vout[0].nValue = 50 * COIN;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         CBlock block;
         block.vtx.push_back(txNew);
         block.hashPrevBlock = 0;
         block.hashMerkleRoot = block.BuildMerkleTree();
         block.nVersion = 1;
-        block.nTime    = 1513219446;
+        block.nTime    = 1526020578;
         block.nBits    = 0x1e0ffff0;
-        block.nNonce   = 2085105452;
+        block.nNonce   = 137730;
 
         if (fTestNet)
         {
-            block.nTime    = 1513219430;
-            block.nNonce   = 387675336;
+            block.nTime    = 1526020600;
+            block.nNonce   = 858280;
         }
 
 if (false && block.GetHash() != hashGenesisBlock)
@@ -2849,7 +2849,7 @@ if (false && block.GetHash() != hashGenesisBlock)
         printf("%s\n", hash.ToString().c_str());
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
-        assert(block.hashMerkleRoot == uint256("0xfbed20fa3943533e70a9bed6a78bbc8ec901aa9231125f7ef91cd32198a182ce"));
+        assert(block.hashMerkleRoot == uint256("0x52b2455696516c14fde6fb8bf13891f34a49b339b99aa863942e5cd54db71fc1"));
         block.print();
         assert(hash == hashGenesisBlock);
 
